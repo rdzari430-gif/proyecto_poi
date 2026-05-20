@@ -1,0 +1,100 @@
+:root {
+    --color-primario: #5c101b;
+    --color-secundario: #8c1c2b;
+    --color-fondo-oscuro: #140406;
+    --color-fondo-panel: #1f080c;
+    --color-input: #2a0b10;
+    --color-texto: #f2f2f2;
+    --color-texto-mutado: #a89fa0;
+    --burbuja-mia: #8c1c2b;
+    --burbuja-otro: #2a0b10;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+
+.app-container { display: flex; flex-direction: column; height: 100vh; background-color: var(--color-fondo-oscuro); overflow: hidden; color: var(--color-texto); }
+
+/* HEADER Y BÚSQUEDA */
+.search-header { height: 65px; background: linear-gradient(90deg, var(--color-primario) 0%, var(--color-secundario) 100%); display: flex; align-items: center; justify-content: space-between; padding: 0 25px; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.header-left { display: flex; align-items: center; gap: 12px; }
+.mini-logo { height: 35px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+.brand-name { color: white; font-weight: 600; font-size: 1.1rem; letter-spacing: 0.5px; }
+
+.search-bar-container { flex: 0 1 450px; background-color: rgba(0,0,0,0.2); display: flex; align-items: center; padding: 8px 15px; border-radius: 20px; position: relative; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease; }
+.search-bar-container:focus-within { background-color: rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.3); }
+.search-bar-container input { background: none; border: none; color: white; width: 100%; outline: none; font-size: 0.95rem; }
+.search-bar-container input::placeholder { color: rgba(255,255,255,0.6); }
+.search-bar-container i { color: rgba(255,255,255,0.6); margin-right: 10px; }
+
+.search-results { position: absolute; top: 110%; left: 0; width: 100%; background: var(--color-fondo-panel); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.6); z-index: 200; border: 1px solid rgba(255,255,255,0.05); }
+.search-item { padding: 15px; color: var(--color-texto); cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.2s; display: flex; align-items: center; gap: 10px; }
+.search-item i { background: rgba(255,255,255,0.1); padding: 8px; border-radius: 50%; }
+.search-item:hover { background: var(--color-primario); }
+
+.header-right { display: flex; align-items: center; gap: 15px; }
+.user-name { font-weight: 500; }
+.profile-pic { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.8); }
+
+/* LAYOUT PRINCIPAL */
+.main-layout { display: flex; flex: 1; overflow: hidden; }
+
+.chats-sidebar { width: 340px; background-color: var(--color-fondo-panel); display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,0.05); }
+.sidebar-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.sidebar-header h3 { font-size: 1.1rem; font-weight: 600; }
+.btn-create-group { background: var(--color-primario); color: white; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; transition: transform 0.2s, background 0.2s; display: flex; align-items: center; justify-content: center; }
+.btn-create-group:hover { transform: scale(1.1); background: var(--color-secundario); }
+
+.chats-history { flex: 1; overflow-y: auto; }
+.chat-item { padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.02); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 12px; }
+.chat-item i { font-size: 1.2rem; color: var(--color-texto-mutado); background: var(--color-input); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.chat-item:hover, .chat-item.active { background: rgba(255,255,255,0.05); }
+.chat-item.active i { color: white; background: var(--color-secundario); }
+
+.chat-area { flex: 1; display: flex; flex-direction: column; background: var(--color-fondo-oscuro); }
+.chat-header-bar { height: 65px; background-color: var(--color-fondo-panel); display: flex; justify-content: space-between; align-items: center; padding: 0 25px; border-bottom: 1px solid rgba(255,255,255,0.05); box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 10; }
+.chat-title { font-weight: 600; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+
+.chat-display { flex: 1; overflow-y: auto; padding: 25px; display: flex; flex-direction: column; gap: 15px; scroll-behavior: smooth; }
+.welcome-msg { margin: auto; text-align: center; color: var(--color-texto-mutado); display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.watermark { height: 100px; opacity: 0.15; filter: grayscale(100%); }
+
+/* BURBUJAS DE MENSAJE */
+.message-container { display: flex; flex-direction: column; max-width: 75%; }
+.msg-mine { align-self: flex-end; align-items: flex-end; }
+.msg-other { align-self: flex-start; align-items: flex-start; }
+
+.message-sender { font-size: 0.75rem; color: var(--color-texto-mutado); margin-bottom: 4px; margin-left: 5px; margin-right: 5px; }
+.message-bubble { padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.4; box-shadow: 0 2px 5px rgba(0,0,0,0.2); word-wrap: break-word; }
+
+.msg-mine .message-bubble { background-color: var(--burbuja-mia); border-bottom-right-radius: 4px; color: white; }
+.msg-other .message-bubble { background-color: var(--burbuja-otro); border-bottom-left-radius: 4px; color: white; }
+
+/* INPUT AREA */
+.chat-input-area { padding: 20px 25px; display: flex; align-items: center; gap: 15px; background: var(--color-fondo-panel); border-top: 1px solid rgba(255,255,255,0.05); }
+.btn-upload { background: none; border: none; color: var(--color-texto-mutado); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
+.btn-upload:hover { color: white; }
+.input-wrapper { flex: 1; background: var(--color-input); padding: 12px 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.05); }
+.input-wrapper input { width: 100%; background: none; border: none; color: white; outline: none; font-size: 0.95rem; }
+.input-wrapper input:disabled { opacity: 0.5; }
+.btn-send { width: 45px; height: 45px; border-radius: 50%; background: var(--color-primario); border: none; color: white; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+.btn-send:hover:not(:disabled) { background: var(--color-secundario); transform: scale(1.05); }
+.btn-send:disabled { background: var(--color-input); cursor: not-allowed; opacity: 0.5; }
+
+/* MODAL */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(5px); }
+.modal-content { background: var(--color-fondo-panel); padding: 30px; border-radius: 16px; width: 400px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.5); transform: translateY(0); animation: modalIn 0.3s ease-out; }
+@keyframes modalIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.modal-content h3 { margin-bottom: 20px; font-weight: 600; text-align: center; }
+.modal-content input { width: 100%; padding: 12px 15px; background: var(--color-input); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; margin-bottom: 25px; outline: none; transition: border-color 0.3s; }
+.modal-content input:focus { border-color: var(--color-secundario); }
+.modal-buttons { display: flex; justify-content: flex-end; gap: 12px; }
+.modal-buttons button { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-weight: 500; transition: all 0.2s; }
+#modal-cancel { background: transparent; color: var(--color-texto-mutado); }
+#modal-cancel:hover { background: rgba(255,255,255,0.05); color: white; }
+#modal-confirm { background: var(--color-primario); color: white; }
+#modal-confirm:hover { background: var(--color-secundario); }

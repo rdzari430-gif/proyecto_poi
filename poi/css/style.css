@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+:root {
+    --color-sidebar-header: #721422;
+    --color-main-bg: #1F0221;
+    --color-btn-sidebar: #330310;
+    --color-white: #ffffff;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.topbar {
+    height: 70px;
+    background-color: var(--color-sidebar-header);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 20;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo { 
+    height: 55px; 
+    border-radius: 8px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-display {
+    color: white;
+    font-size: 14px;
+}
+
+.btn-login, .btn-logout {
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-login {
+    background-color: var(--color-btn-sidebar);
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: var(--color-white);
+    color: var(--color-btn-sidebar);
+}
+
+.btn-logout {
+    background-color: #a80000;
+    color: white;
+    font-size: 12px;
+}
+
+.btn-logout:hover {
+    background-color: white;
+    color: #a80000;
+}
+
+.profile-pic { 
+    height: 45px; 
+    width: 45px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.2);
+}
+
+.body-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 80px;
+    background-color: var(--color-sidebar-header);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.sidebar-top, .sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.side-link {
+    width: 55px;
+    height: 55px;
+    background-color: var(--color-btn-sidebar);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: 0.3s ease;
+    text-decoration: none;
+    color: #ccc;
+    font-size: 24px;
+}
+
+.side-link:hover {
+    background-color: var(--color-white);
+    color: var(--color-sidebar-header);
+    transform: scale(1.05);
+}
+
+.content {
+    flex: 1;
+    background-color: var(--color-main-bg);
+    color: white;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+.banner-container {
+    position: relative;
+    height: 350px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-overlay {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 2;
+}
+
+.mundial-title {
+    position: relative;
+    z-index: 5;
+    font-size: 4rem;
+    letter-spacing: 5px;
+}
+
+.banner-slide {
+    position: absolute;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: 1s;
+}
+
+.banner-slide.active { opacity: 1; }
+
+.stadium-btn {
+    background: #45000C;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.stadium-btn.active { 
+    background: #721422; 
+    border: 1px solid white; 
+}
+
+.map-container { 
+    border-radius: 15px; 
+    overflow: hidden; 
+    margin-top: 20px; 
+}
